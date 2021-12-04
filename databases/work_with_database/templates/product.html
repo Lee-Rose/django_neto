@@ -8,6 +8,22 @@
             <h1>Телефон</h1>
         </div>
         <div class="content">
+            <td>
+                {% for p in phone %}
+                    <tr>
+                        <h3> {{ p.name }} </h3>
+                        <img src={{ p.image }} height="500">
+                        {% if p.lte_exist is True %}
+                            <p>Поддержка LTE - Да </p>
+                        {% else %}
+                            <p>Поддержка LTE - НЕТ </p>
+                        {% endif %}
+                        <p>Дата выхода - {{ p.release_date }}</p>
+                        <p><big><b> Стоимость: {{ p.price }}р. </b></big></p>
+                    </tr>
+                {% endfor %}
+            </td>
+
 
         </div>
     </div>
