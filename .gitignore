@@ -13,7 +13,7 @@ venv/
 .venv/
 
 ### Project specific ###
-settings_local.py
+databases_2/m2m-relations/website/settings_local.py
 
 ### OS specific ###
 .DS_Store
