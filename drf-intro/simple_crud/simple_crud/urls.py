@@ -14,10 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, register_converter
+from rest_framework.routers import DefaultRouter
+from measurements import views
 
-# TODO: настройте роутер и подключите `ProjectViewSet` и `MeasurementViewSet`
+
+router = DefaultRouter()
+router.register('projects', views.ProjectViewSet, basename='projects')
+router.register('measurements', views.MeasurementViewSet, basename='measurements')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('api/v1/projects/', include(router.urls)),
+    path('api/v1/measurements/', include(router.urls)),
+    ]
+
