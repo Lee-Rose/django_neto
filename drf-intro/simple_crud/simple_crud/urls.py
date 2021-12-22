@@ -26,6 +26,8 @@ router.register('measurements', views.MeasurementViewSet, basename='measurements
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/projects/', include(router.urls)),
+    path('api/v1/projects/<int:pk>/', include(router.urls)),
     path('api/v1/measurements/', include(router.urls)),
+    path('api/v1/measurements/<int:pk>/', include(router.urls)),
     ]
 
