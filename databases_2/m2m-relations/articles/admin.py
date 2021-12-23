@@ -4,14 +4,14 @@ from .models import Article, Theme, Relations
 from django.forms import BaseInlineFormSet
 
 
-class RelationshipInLineFormset(BaseInlineFormSet):
+class RelationsInLineFormset(BaseInlineFormSet):
     def clean(self):
         i = 0
         for form in self.forms:
             dictionary = form.cleaned_data
             if not dictionary.get('main'):
                 continue
-            elif dictionary['main'] is True:
+            elif dictionary and dictionary['is_main'] is True:
                 i += 1
         if i == 0:
             raise ValidationError('Выберите главную тему')
@@ -21,7 +21,7 @@ class RelationshipInLineFormset(BaseInlineFormSet):
 
 class RelationsInLine(admin.TabularInline):
     model = Relations
-    formset = RelationshipInLineFormset
+    formset = RelationsInLineFormset
 
 
 @admin.register(Article, Theme)
